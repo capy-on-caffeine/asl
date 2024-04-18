@@ -162,3 +162,6 @@ cython_debug/
 
 # Data folder
 data
+
+# Deployed files
+deploy
