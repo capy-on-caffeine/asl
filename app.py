@@ -4,12 +4,9 @@ import classifier
 import instance_runner
 
 def main():
-    print("Welcome to MyApp!")
     print("What do you want to do?")
-    print("1. Collect images")
-    print("2. Make dataset")
-    print("3. Run classifier")
-    print("4. Run instance runner")
+    print("1. Collect more images")
+    print("2. Run instance")
     print("Enter anything else to exit...")
     
     while True:
@@ -17,12 +14,11 @@ def main():
 
         if choice == "1":
             image_collector.run()
+            make_dataset.run(mode='evaluation')
+            classifier.run(mode='evaluation')
+            instance_runner.run(mode='evaluation')
         elif choice == "2":
-            make_dataset.run()
-        elif choice == "3":
-            classifier.run()
-        elif choice == "4":
-            instance_runner.run()
+            instance_runner.run(mode='normal')
         else:
             break
 
