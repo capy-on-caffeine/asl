@@ -12,9 +12,14 @@ def run(mode='evaluation'):
         folder = 'deploy'
         
     data_dict = pickle.load(open('{}/data.pickle'.format(folder), 'rb'))
-
-    data = np.asarray(data_dict['data'])
-    labels = np.asarray(data_dict['labels'])
+    
+    try:
+        data = np.asarray(data_dict['data'])
+        labels = np.asarray(data_dict['labels'])
+    except ValueError:
+        print("Data unfit for model training. Exiting pipeline...")
+        # CLEANUP FUNCTION HERE ############################################################
+        exit()
 
     X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, shuffle=True, stratify=labels)
     
@@ -30,3 +35,4 @@ def run(mode='evaluation'):
 
 if __name__ == "__main__":
     run(mode='normal')
+    # run(mode='evaluation')

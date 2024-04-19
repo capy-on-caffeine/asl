@@ -1,7 +1,6 @@
 import mediapipe as mp
 import cv2
 import os
-import matplotlib.pyplot as plt
 import pickle
 
 def run(mode='normal'):
@@ -58,3 +57,4 @@ def run(mode='normal'):
 
 if __name__ == "__main__":
     run(mode='normal')
+    # run(mode='evaluation')

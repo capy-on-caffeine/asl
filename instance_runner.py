@@ -12,6 +12,9 @@ def run(mode='evaluation'):
     ENTER_KEY = 13
     ESC_KEY = 27
     
+    # TEMP_DIR = './temp'
+    # DATA_DIR = './data'
+    
     number_of_classes = 3
     
     deploy_data = False
@@ -100,24 +103,33 @@ def run(mode='evaluation'):
     cap.release()
     cv2.destroyAllWindows()
     
-    if mode == 'evaluation':    
+    if mode == 'evaluation':
         if deploy_data:
             # append temp_files to data
             for i in range(number_of_classes):
-                
-                f = open('temp/{}/meta.txt'.format(i), 'r')
-                file_num = f.readline().split('=')[1]
+                file_num = 0
+                f = open('data/{}/meta.txt'.format(i), 'r')
+                file_num = int(f.readline().split('=')[1])
                 f.close()
+                # print(file_num)
                 
-                files = os.listdir('./temp')
+                files = os.listdir('./temp/{}'.format(i))
+                # print(files)
                 for file in files:
                     if file.endswith('.jpg'): ## remove this as this does not copy the metadata
-                        source_file = os.path.join('temp', i, file)
-                        if not os.path.exists(os.path.join('./data', i)):
-                            os.makedirs(os.path.join('./data', i))
-                        destination_file = os.path.join('./data', i, file_num)
+                        source_file = os.path.join('temp', str(i), file)
+                        if not os.path.exists(os.path.join('./data', str(i))):
+                            os.makedirs(os.path.join('./data', str(i)))
+                        destination_file = os.path.join('data', str(i), '{}.jpg'.format(str(file_num)))
                         shutil.copyfile(source_file, destination_file)
                         file_num += 1
+                
+                # print(file_num)
+                fname = 'data/{}/meta.txt'.format(i)
+                f = open(fname, 'w')
+                f.write('start_counter={}'.format(file_num))
+                f.close()
+            
             # make new dataset
             make_dataset.run(mode='normal')
             # train model
@@ -132,3 +144,4 @@ def run(mode='evaluation'):
 
 if __name__ == "__main__":
     run(mode='normal')
+    # run(mode='evaluation')
