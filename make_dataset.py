@@ -35,6 +35,9 @@ def run(mode='normal'):
                         y = hand_landmarks.landmark[i].y
                         data_aux.append(x)
                         data_aux.append(y)
+                        
+                        # apply checks to delete image and remove it from dataset if it's not fit for training
+                        # maybe a function that renames images to compact them
                 
                 data.append(data_aux)
                 labels.append(dir)

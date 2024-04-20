@@ -12,9 +12,6 @@ def run(mode='evaluation'):
     ENTER_KEY = 13
     ESC_KEY = 27
     
-    # TEMP_DIR = './temp'
-    # DATA_DIR = './data'
-    
     number_of_classes = 3
     
     deploy_data = False
@@ -105,12 +102,21 @@ def run(mode='evaluation'):
     
     if mode == 'evaluation':
         if deploy_data:
+            if not os.path.exists('data'):
+                os.makedirs('data')
+            
             # append temp_files to data
             for i in range(number_of_classes):
                 file_num = 0
-                f = open('data/{}/meta.txt'.format(i), 'r')
-                file_num = int(f.readline().split('=')[1])
-                f.close()
+                try:
+                    f = open('data/{}/meta.txt'.format(i), 'r')
+                    file_num = int(f.readline().split('=')[1])
+                    f.close()
+                except FileNotFoundError:
+                    os.makedirs(os.path.join('data', str(i)))
+                    f = open('data/{}/meta.txt'.format(i), 'w')
+                    f.write('start_counter={}'.format(file_num))
+                    f.close()
                 # print(file_num)
                 
                 files = os.listdir('./temp/{}'.format(i))

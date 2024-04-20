@@ -1,2 +1,2 @@
 @echo off
-python app.py %* 
+python C:\hack\asl\app.py %* 

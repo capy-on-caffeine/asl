@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+import cleanup
 
 def run(mode='evaluation'):
     folder = ''
@@ -17,8 +18,9 @@ def run(mode='evaluation'):
         data = np.asarray(data_dict['data'])
         labels = np.asarray(data_dict['labels'])
     except ValueError:
-        print("Data unfit for model training. Exiting pipeline...")
-        # CLEANUP FUNCTION HERE ############################################################
+        print("Data unfit for model training. Deleting temp files...")
+        cleanup.run()
+        print("Exiting pipeline...")
         exit()
 
     X_train, X_test, y_train, y_test = train_test_split(data, labels, test_size=0.3, shuffle=True, stratify=labels)
