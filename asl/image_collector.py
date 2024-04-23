@@ -1,6 +1,6 @@
 import os
 import cv2
-from globals import *
+from asl.globals import *
 
 def run(label_classes=["NONE",]): 
     if not os.path.exists(TEMP_DIR):

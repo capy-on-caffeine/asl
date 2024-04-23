@@ -3,8 +3,8 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import cleanup
-from globals import *
+import asl.cleanup as cleanup
+from asl.globals import *
 
 
 def run(mode="evaluation"):

@@ -1,4 +1,4 @@
-from globals import *
+from asl.globals import *
 import shutil
 import os
 

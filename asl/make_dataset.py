@@ -2,7 +2,7 @@ import mediapipe as mp
 import cv2
 import os
 import pickle
-from globals import *
+from asl.globals import *
 
 
 def run(mode="normal"):

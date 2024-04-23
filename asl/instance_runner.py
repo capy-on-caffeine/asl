@@ -3,11 +3,11 @@ import mediapipe as mp
 import numpy as np
 import pickle
 import os
-import make_dataset
-import classifier
+import asl.make_dataset as make_dataset
+import asl.classifier as classifier
 import shutil
-import cleanup
-from globals import *
+import asl.cleanup as cleanup
+from asl.globals import *
 
 def run(mode="evaluation", label_classes=["NONE",]):
     deploy_data = False

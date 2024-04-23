@@ -1,7 +1,7 @@
 import os
 
 # Paths
-ROOT = os.getcwd()
+ROOT = os.getcwd() # potentially disastrous
 TEMP_DIR = ROOT + "/temp"
 TEMP_FILES_DIR = ROOT + "/temp_files"
 DATA_DIR = ROOT + "/data"
@@ -102,3 +102,13 @@ CLASS_MAP = {
     "Z": 35,
     "NONE": 36,
 }
+
+
+# WARNING: DONT USE YET
+
+def set_root(root_dir):
+    global ROOT
+    ROOT = root_dir
+    
+def print_root():
+    print(ROOT)

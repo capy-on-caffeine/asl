@@ -1,10 +1,10 @@
 import sys
-import image_collector
-import make_dataset
-import classifier
-import instance_runner
-import cleanup
-from globals import *
+import asl.image_collector as collector
+import asl.make_dataset as make
+import asl.classifier as classifier
+import asl.instance_runner as runner
+import asl.cleanup as cleanup
+from asl.globals import *
 
 
 def main(args):
@@ -20,13 +20,13 @@ def main(args):
                 labels = ["NONE",]
                 break
         
-        image_collector.run(label_classes=labels)
-        make_dataset.run(mode="evaluation")
+        collector.run(label_classes=labels)
+        make.run(mode="evaluation")
         classifier.run(mode="evaluation")
-        instance_runner.run(mode="evaluation", label_classes=labels)
+        runner.run(mode="evaluation", label_classes=labels)
         
     elif args[0] == "predict":
-        instance_runner.run(mode="normal")
+        runner.run(mode="normal")
         
     elif args[0] == "clean":
         cleanup.run()
